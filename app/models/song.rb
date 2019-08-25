@@ -9,4 +9,6 @@ class Song < ActiveRecord::Base
     artist = Artist.find_or_create_by(name: name)
     self.artist = artist
   end
+ accepts_nested_attributes_for :artist, reject_if: proc {|attributes| attributes["name"].blank?}
+
 end
